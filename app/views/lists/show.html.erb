@@ -1,0 +1,20 @@
+<header class="jumbotron text-center bg-primary text-white">
+    <h1 class="display-4"><%= @list.name %></h1>
+</header>
+
+<section class="container">
+    <h2 class="my-4">Items in this list:</h2>
+    <div class="row">
+        <% @list.bookmarks.each do |bookmark| %>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body show">
+                        <h5 class="card-title"><%= bookmark.movie ? bookmark.movie.title : 'No movie found for this bookmark' %></h5>
+                        <p class="card-text"><%= bookmark.comment ? "Comment: #{bookmark.comment}" : 'No comment for this bookmark' %></p>
+                        <%= link_to 'Delete', bookmark_path(bookmark), data: { turbo_method: :delete, confirm: 'Are you sure?' }, class: 'btn btn-danger' if bookmark.movie %>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</section>

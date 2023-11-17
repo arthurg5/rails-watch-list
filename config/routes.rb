@@ -7,4 +7,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  # A user can see all the lists, see the details of a given list and its name, and create a new list
+  resources :lists, only: [:index, :new, :create, :show] do
+    resources :bookmarks, only: [:new, :create] # A user can add a new bookmark (movie/list pair) to an existing list
+  end
+
+  resources :bookmarks, only: [:destroy] # A user can delete a bookmark from a list
 end

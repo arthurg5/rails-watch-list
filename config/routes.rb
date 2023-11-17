@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   end
 
   resources :bookmarks, only: [:destroy] # A user can delete a bookmark from a list
+
+  root "lists#index"
 end
